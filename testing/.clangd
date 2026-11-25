@@ -1,0 +1,8 @@
+# ~/Projects/arm_dev/.clangd
+CompileFlags:
+  Add:
+    - --target=arm-none-eabi
+    - -mcpu=cortex-m3
+    - -mthumb
+    - -ffreestanding
+Compiler: arm-none-eabi-gcc

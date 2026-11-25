@@ -1,0 +1,203 @@
+
+Discarded input sections
+
+ .data          0x00000000        0x0 /tmp/ccFupYuT.o
+ .bss           0x00000000        0x0 /tmp/ccFupYuT.o
+ .data          0x00000000        0x0 /tmp/ccNqfKV1.o
+ .bss           0x00000000        0x0 /tmp/ccNqfKV1.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x00000000         0x00060000         xr
+RAM              0x20000000         0x00006000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /tmp/ccFupYuT.o
+LOAD /tmp/ccNqfKV1.o
+                0x00000000                        __ROM_BASE = 0x0
+                0x00060000                        __ROM_SIZE = 0x60000
+                0x20000000                        __RAM_BASE = 0x20000000
+                0x00006000                        __RAM_SIZE = 0x6000
+                0x00000400                        __STACK_SIZE = 0x400
+                0x00000400                        __HEAP_SIZE = 0x400
+
+.text           0x00000000       0xf0
+ *(.vectors)
+ .vectors       0x00000000       0x40 /tmp/ccFupYuT.o
+                0x00000000                vector_table
+ *(.text*)
+ .text          0x00000040       0x64 /tmp/ccFupYuT.o
+                0x00000040                Default_Handler
+                0x00000042                Reset_Handler
+ .text          0x000000a4       0x4c /tmp/ccNqfKV1.o
+                0x000000a4                main
+ *(.init)
+ *(.fini)
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+ *(.rodata*)
+ *(.eh_frame*)
+
+.glue_7         0x000000f0        0x0
+ .glue_7        0x000000f0        0x0 linker stubs
+
+.glue_7t        0x000000f0        0x0
+ .glue_7t       0x000000f0        0x0 linker stubs
+
+.vfp11_veneer   0x000000f0        0x0
+ .vfp11_veneer  0x000000f0        0x0 linker stubs
+
+.v4_bx          0x000000f0        0x0
+ .v4_bx         0x000000f0        0x0 linker stubs
+
+.iplt           0x000000f0        0x0
+ .iplt          0x000000f0        0x0 /tmp/ccFupYuT.o
+
+.rel.dyn        0x000000f0        0x0
+ .rel.iplt      0x000000f0        0x0 /tmp/ccFupYuT.o
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x000000f0                        __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x000000f0                        __exidx_end = .
+                0x000000f0                        __ram_func = .
+
+.code_section_on_ram
+                0x20000000        0x0 load address 0x000000f0
+                0x20000000                        __code_section_on_ram_start__ = .
+ *(.code_section_on_ram*)
+                0x20000000                        __code_section_on_ram_end__ = .
+                0x20000000                        . = ALIGN (0x4)
+
+.copy.table     0x000000f0       0x18
+                0x000000f0                        . = ALIGN (0x4)
+                0x000000f0                        __copy_table_start__ = .
+                0x000000f0        0x4 LONG 0x108 __etext
+                0x000000f4        0x4 LONG 0x20000000 __data_start__
+                0x000000f8        0x4 LONG 0x0 ((__data_end__ - __data_start__) / 0x4)
+                0x000000fc        0x4 LONG 0xf0 __ram_func
+                0x00000100        0x4 LONG 0x20000000 __code_section_on_ram_start__
+                0x00000104        0x4 LONG 0x0 ((__code_section_on_ram_end__ - __code_section_on_ram_start__) / 0x4)
+                0x00000108                        __copy_table_end__ = .
+
+.zero.table     0x00000108        0x0
+                0x00000108                        . = ALIGN (0x4)
+                0x00000108                        __zero_table_start__ = .
+                0x00000108                        __zero_table_end__ = .
+                0x00000108                        __etext = ALIGN (0x4)
+
+.data           0x20000000        0x0 load address 0x00000108
+                0x20000000                        __data_start__ = .
+ *(vtable)
+ *(.data)
+ *(.data.*)
+                0x20000000                        . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__preinit_array_start = .)
+ *(.preinit_array)
+                [!provide]                        PROVIDE (__preinit_array_end = .)
+                0x20000000                        . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end = .)
+                0x20000000                        . = ALIGN (0x4)
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(SORT_BY_NAME(.fini_array.*))
+ *(.fini_array)
+                [!provide]                        PROVIDE (__fini_array_end = .)
+ *(.jcr*)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __data_end__ = .
+
+.igot.plt       0x20000000        0x0
+ .igot.plt      0x20000000        0x0 /tmp/ccFupYuT.o
+
+.bss            0x20000000        0x0
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __bss_start__ = .
+ *(.bss)
+ *(.bss.*)
+ *(COMMON)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        __bss_end__ = .
+
+.heap           0x20000000      0x400
+                0x20000000                        . = ALIGN (0x8)
+                0x20000000                        __end__ = .
+                [!provide]                        PROVIDE (end = .)
+                0x20000400                        . = (. + __HEAP_SIZE)
+ *fill*         0x20000000      0x400 
+                0x20000400                        . = ALIGN (0x8)
+                0x20000400                        __HeapLimit = .
+
+.stack          0x20005c00      0x400
+                0x20005c00                        . = ALIGN (0x8)
+                0x20005c00                        __StackLimit = .
+                0x20006000                        . = (. + __STACK_SIZE)
+ *fill*         0x20005c00      0x400 
+                0x20006000                        . = ALIGN (0x8)
+                0x20006000                        __StackTop = .
+                [!provide]                        PROVIDE (__stack = __StackTop)
+                0x00000001                        ASSERT ((__StackLimit >= __HeapLimit), region RAM overflowed with stack)
+OUTPUT(firmware.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x221
+ .debug_info    0x00000000      0x14e /tmp/ccFupYuT.o
+ .debug_info    0x0000014e       0xd3 /tmp/ccNqfKV1.o
+
+.debug_abbrev   0x00000000      0x193
+ .debug_abbrev  0x00000000       0xf1 /tmp/ccFupYuT.o
+ .debug_abbrev  0x000000f1       0xa2 /tmp/ccNqfKV1.o
+
+.debug_loclists
+                0x00000000       0x3c
+ .debug_loclists
+                0x00000000       0x3c /tmp/ccFupYuT.o
+
+.debug_aranges  0x00000000       0x40
+ .debug_aranges
+                0x00000000       0x20 /tmp/ccFupYuT.o
+ .debug_aranges
+                0x00000020       0x20 /tmp/ccNqfKV1.o
+
+.debug_line     0x00000000      0x1f9
+ .debug_line    0x00000000       0xf3 /tmp/ccFupYuT.o
+ .debug_line    0x000000f3      0x106 /tmp/ccNqfKV1.o
+
+.debug_str      0x00000000      0x179
+ .debug_str     0x00000000      0x179 /tmp/ccFupYuT.o
+                                0x19a (size before relaxing)
+ .debug_str     0x00000179        0x0 /tmp/ccNqfKV1.o
+                                0x12f (size before relaxing)
+
+.comment        0x00000000       0x45
+ .comment       0x00000000       0x45 /tmp/ccFupYuT.o
+                                 0x46 (size before relaxing)
+ .comment       0x00000045        0x0 /tmp/ccNqfKV1.o
+                                 0x46 (size before relaxing)
+
+.ARM.attributes
+                0x00000000       0x2d
+ .ARM.attributes
+                0x00000000       0x2d /tmp/ccFupYuT.o
+ .ARM.attributes
+                0x0000002d       0x2d /tmp/ccNqfKV1.o
+
+.debug_frame    0x00000000       0x58
+ .debug_frame   0x00000000       0x38 /tmp/ccFupYuT.o
+ .debug_frame   0x00000038       0x20 /tmp/ccNqfKV1.o
